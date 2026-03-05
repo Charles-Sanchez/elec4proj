@@ -28,7 +28,7 @@ npm run build
 
 ## Collaboration Setup
 
-See [docs/PROJECT_WORKFLOW.md](/Users/anon/Multimedia/workbench/WebEngProj/docs/PROJECT_WORKFLOW.md).
+See [docs/PROJECT_WORKFLOW.md](docs/PROJECT_WORKFLOW.md).
 
 To create all collaboration branches locally:
 

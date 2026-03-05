@@ -1,10 +1,10 @@
 # Web Engineering Collaboration Workflow
 
-This repo is organized for parallel work across multiple groups.
+Hello, ere workflow reference.
 
 ## 1) Branch Strategy
 
-Use `main` as the integration baseline.
+Use `main` as the integration baseline. Ako na bahala mag merge.
 
 ### Landing page branches
 
@@ -58,4 +58,4 @@ Each department page must include these sections:
 
 - Admin content currently saves to browser `localStorage` per department.
 - This is a temporary setup for development collaboration.
-- If needed, replace with a shared backend API later.
+- If needed, rereplace natin to for online backend later on. Pero for now, local lang ung project.
