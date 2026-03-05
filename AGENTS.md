@@ -1,77 +1,77 @@
 # AGENTS.md
 
-This file defines strict collaboration rules for AI coding assistants in this repository.
+Strict operating rules for AI coding assistants in this repository.
 
-## Core Rule
+## 1) Non-Negotiable Scope Rule
 
-AI assistants must only edit files that belong to the assigned branch scope.
-If a requested change is outside scope, the assistant must stop and say it is out of scope.
+AI assistants must edit only the files owned by the current branch scope.
+If asked to modify out-of-scope files, stop and respond: "Out of scope for this branch."
 
-## Assignment By Branch Name
+## 2) Determine Scope From Branch
 
-Read current branch first:
+Always check branch first:
 
 ```bash
 git branch --show-current
 ```
 
-The branch prefix decides allowed work.
+Then apply the rules below.
+
+## 3) Allowed Files Per Branch
 
 ### `landing/hero`
-Allowed:
-- `src/Pages/LandingPage.tsx` only for the Hero section (`id="hero"`)
-- `public/` assets used only by Hero
-
-Forbidden:
-- Mission/Vision, Department Grid, News, Facilities, Statistics, Contact, Footer sections
-- Any department pages or data files
+Allowed files:
+- `public/data/landing/hero.json`
+- `public/` assets used by hero only
 
 ### `landing/mission-vision`
-Allowed:
-- `src/Pages/LandingPage.tsx` only for section `id="mission-vision"`
-- `public/` assets used only by Mission/Vision
+Allowed files:
+- `public/data/landing/mission-vision.json`
+- `public/` assets used by mission/vision only
 
 ### `landing/department-grid`
-Allowed:
-- `src/Pages/LandingPage.tsx` only for section `id="department-grid"`
-- `public/` assets used only by Department Grid
+Allowed files:
+- `public/data/landing/department-grid.json`
+- `public/` assets used by department grid only
 
 ### `landing/news`
-Allowed:
-- `src/Pages/LandingPage.tsx` only for section `id="news"`
-- `public/` assets used only by News
+Allowed files:
+- `public/data/landing/news.json`
+- `public/` assets used by news only
 
 ### `landing/facilities`
-Allowed:
-- `src/Pages/LandingPage.tsx` only for section `id="facilities"`
-- `public/` assets used only by Facilities
+Allowed files:
+- `public/data/landing/facilities.json`
+- `public/` assets used by facilities only
 
 ### `landing/statistics`
-Allowed:
-- `src/Pages/LandingPage.tsx` only for section `id="statistics"`
-- `public/` assets used only by Statistics
+Allowed files:
+- `public/data/landing/statistics.json`
+- `public/` assets used by statistics only
 
 ### `landing/contact`
-Allowed:
-- `src/Pages/LandingPage.tsx` only for section `id="contact"`
-- `public/` assets used only by Contact
+Allowed files:
+- `public/data/landing/contact.json`
+- `public/` assets used by contact only
 
 ### `landing/footer`
-Allowed:
-- `src/Pages/LandingPage.tsx` only for footer block (`id="footer"`)
-- `public/` assets used only by Footer
+Allowed files:
+- `public/data/landing/footer.json`
+- `public/` assets used by footer only
 
 ### `dept/<CODE>` where `<CODE>` is one of `CE CPE ECE EE IE MFE ME MEE`
-Allowed:
-- `src/data/department/<CODE>.ts`
+Allowed files:
+- `public/data/departments/<CODE>.json`
 - `public/departments/<CODE>/...`
 
-Forbidden:
-- Other department data files
-- Shared page/layout files (for example `src/Pages/DepartmentPage.tsx`, `src/App.tsx`)
-- Landing page files
+Forbidden for all `dept/*` branches:
+- Any other department JSON files
+- `src/Pages/DepartmentPage.tsx`
+- `src/Pages/LandingPage.tsx`
+- `src/App.tsx`
+- Shared infrastructure/docs unless maintainer explicitly requests
 
-## Explicit Owner Map For Landing Sections
+## 4) Ownership Map (Landing)
 
 - Hero: Gapac, Ryan Joshua
 - Mission & Vision: Roxas, Aiam Airron L
@@ -84,30 +84,24 @@ Forbidden:
 
 AI assistants must not edit sections owned by others.
 
-## Pre-Commit Scope Check (Mandatory)
+## 5) Mandatory Pre-Commit Guard
 
-Before committing, run:
+Before every commit, run:
 
 ```bash
 git diff --name-only --cached
 ```
 
-If any staged file is outside allowed scope for the current branch, unstage it and stop.
-Do not commit mixed-scope changes.
+If any staged file is outside allowed scope, unstage it and stop.
+No mixed-scope commits.
 
-## Commit Rules
+## 6) Editing Policy
 
 - Keep commits small and single-purpose.
-- One branch = one owned scope only.
-- Do not refactor shared files unless a maintainer explicitly asks.
-- Do not rename/move files outside owned scope.
+- Prefer content JSON edits over shared code edits.
+- Do not run whole-file formatting when only one owned JSON file is assigned.
+- Do not rename or move files outside branch scope.
 
-## Conflict Minimization Rules
+## 7) If Scope Is Unclear
 
-- Prefer editing content data files over shared UI files.
-- For landing page branches, only change the assigned section block.
-- Do not run formatting across whole files when only one section is assigned.
-
-## If Scope Is Unclear
-
-AI assistant must ask for clarification and do no edits until scope is confirmed.
+Do not edit. Ask one clarification question and wait.

@@ -1,12 +1,12 @@
 # Web Engineering Collaboration Workflow
 
-Hello, ere workflow reference.
+Use this workflow so multiple groups can work in parallel with minimal merge conflicts.
 
 ## 1) Branch Strategy
 
-Use `main` as the integration baseline. Ako na bahala mag merge.
+Use `main` as integration baseline.
 
-### Landing page branches
+### Landing branches
 
 - `landing/hero`
 - `landing/mission-vision`
@@ -28,23 +28,53 @@ Use `main` as the integration baseline. Ako na bahala mag merge.
 - `dept/ME`
 - `dept/MEE`
 
-## 2) Scope Rules
+## 2) Source-Of-Truth Files
 
-- Landing teams only edit [src/Pages/LandingPage.tsx](/Users/anon/Multimedia/workbench/WebEngProj/src/Pages/LandingPage.tsx) and assets they need.
-- Department teams only edit their own department data file in `src/data/department/*` and department page sections.
-- Each department has an admin editor at `/dept/<CODE>/admin` for local content editing.
+Content is now file-based and shareable via git.
 
-## 3) Merge Flow
+### Landing content
+
+Each section has one JSON file in `public/data/landing/`:
+
+- `hero.json`
+- `mission-vision.json`
+- `department-grid.json`
+- `news.json`
+- `facilities.json`
+- `statistics.json`
+- `contact.json`
+- `footer.json`
+
+### Department content
+
+Each department has one JSON file in `public/data/departments/`:
+
+- `CE.json`, `CPE.json`, `ECE.json`, `EE.json`, `IE.json`, `MFE.json`, `ME.json`, `MEE.json`
+
+## 3) Scope Rules
+
+- Landing teams edit only their assigned JSON file and section assets.
+- Department teams edit only their department JSON file and department-specific assets.
+- Avoid editing shared React files unless explicitly requested by maintainer.
+
+## 4) Merge Flow
 
 1. Branch from `main`.
-2. Commit only files related to your assigned scope.
-3. Open PR into `main`.
-4. Resolve conflicts immediately if another section touched the same file.
-5. Keep commits small and descriptive.
+2. Commit only files in your scope.
+3. Open PR to `main`.
+4. Resolve conflicts immediately if scope was violated.
+5. Keep commits short and focused.
 
-## 4) Department Required Content
+## 5) Admin Editor Usage
 
-Each department page must include these sections:
+Route: `/dept/<CODE>/admin`
+
+- Form edits are local for preview/testing.
+- Use **Download `<CODE>.json`** or **Copy JSON**.
+- Replace `public/data/departments/<CODE>.json` with exported content.
+- Commit and push that JSON file.
+
+## 6) Required Department Sections
 
 1. Program Overview
 2. Program Educational Objectives (PEO)
@@ -53,9 +83,3 @@ Each department page must include these sections:
 5. Laboratories
 6. Faculty
 7. Career Opportunities
-
-## 5) Notes About Admin
-
-- Admin content currently saves to browser `localStorage` per department.
-- This is a temporary setup for development collaboration.
-- If needed, rereplace natin to for online backend later on. Pero for now, local lang ung project.

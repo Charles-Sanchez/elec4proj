@@ -3,8 +3,8 @@
 Multi-group collaboration website with:
 
 - Landing page sections assigned per group
-- Per-department pages
-- Per-department admin editor (`/dept/:deptCode/admin`) for editable section content
+- Per-department pages loaded from JSON files in `public/data/`
+- Per-department admin editor (`/dept/:deptCode/admin`) with live preview + JSON export
 
 ## Development
 
@@ -26,6 +26,11 @@ npm run build
 - `/dept/:deptCode` Department page
 - `/dept/:deptCode/admin` Department admin editor
 
+## Content Files
+
+- Landing: `public/data/landing/*.json`
+- Departments: `public/data/departments/*.json`
+
 ## Collaboration Setup
 
 See [docs/PROJECT_WORKFLOW.md](docs/PROJECT_WORKFLOW.md).
@@ -34,10 +39,4 @@ To create all collaboration branches locally:
 
 ```bash
 ./scripts/bootstrap-branches.sh
-```
-
-You can pass a different base branch:
-
-```bash
-./scripts/bootstrap-branches.sh main
 ```
