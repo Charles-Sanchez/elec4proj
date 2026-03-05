@@ -62,6 +62,11 @@ export default function DepartmentAdminPage() {
     };
   }, [code]);
 
+  useEffect(() => {
+    if (!form || !isDeptCode(code)) return;
+    saveDeptDraft(code, form);
+  }, [code, form]);
+
   if (!isDeptCode(code)) {
     return <Navigate to="/departments" replace />;
   }
@@ -93,11 +98,6 @@ export default function DepartmentAdminPage() {
     setForm(extractEditableContent(baseDept));
     setStatus("Reset complete. Local override removed.");
   };
-
-  useEffect(() => {
-    if (!form) return;
-    saveDeptDraft(code, form);
-  }, [code, form]);
 
   const updateArrayItem = <T,>(
     items: T[],
