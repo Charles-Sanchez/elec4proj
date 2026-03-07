@@ -47,7 +47,6 @@ export default function MEPage() {
           { label: "Curriculum", kind: "scroll", target: "curriculum" },
           { label: "Excellence", kind: "route", to: dept.excellencePage.path },
         ]}
-        cta={{ label: "Open ME Admin", to: `/dept/${dept.code}/admin` }}
       />
 
       <main className="me-shell">
@@ -84,18 +83,18 @@ export default function MEPage() {
 
           <div className="me-media-grid">
             <MEMediaSlot
-              src={dept.images.heroLeft}
-              alt={`${dept.title} laboratory portrait`}
-              title={dept.imagePlaceholders.heroLeft.title}
-              text={dept.imagePlaceholders.heroLeft.text}
-              className="me-media-slot--tall"
-            />
-            <MEMediaSlot
               src={dept.images.heroBig}
               alt={`${dept.title} department banner`}
               title={dept.imagePlaceholders.heroBig.title}
               text={dept.imagePlaceholders.heroBig.text}
               className="me-media-slot--wide"
+            />
+            <MEMediaSlot
+              src={dept.images.heroLeft}
+              alt={`${dept.title} laboratory portrait`}
+              title={dept.imagePlaceholders.heroLeft.title}
+              text={dept.imagePlaceholders.heroLeft.text}
+              className="me-media-slot--tall"
             />
             <MEMediaSlot
               src={dept.images.heroSmall1}

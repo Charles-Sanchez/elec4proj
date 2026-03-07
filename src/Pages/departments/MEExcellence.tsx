@@ -45,7 +45,6 @@ export default function MEExcellencePage() {
           { label: "Community", kind: "scroll", target: "community" },
           { label: "Alumni", kind: "scroll", target: "alumni" },
         ]}
-        cta={{ label: "Back to Program", to: `/dept/${dept.code}` }}
       />
 
       <main className="me-shell">
