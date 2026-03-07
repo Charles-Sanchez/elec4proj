@@ -14,6 +14,11 @@ export function useMEReveal(scopeRef: RefObject<HTMLElement | null>, effectKey: 
       return;
     }
 
+     if (typeof IntersectionObserver === "undefined") {
+      items.forEach((item) => item.classList.add("is-visible"));
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -23,13 +28,26 @@ export function useMEReveal(scopeRef: RefObject<HTMLElement | null>, effectKey: 
         });
       },
       {
-        threshold: 0.16,
-        rootMargin: "0px 0px -10% 0px",
+        threshold: 0.22,
+        rootMargin: "0px 0px -6% 0px",
       }
     );
 
-    items.forEach((item) => observer.observe(item));
+    items.forEach((item, index) => {
+      item.classList.remove("is-visible");
+      item.style.setProperty("--me-seq", `${Math.min(index, 8) * 38}ms`);
+    });
 
-    return () => observer.disconnect();
+    const frameId = window.requestAnimationFrame(() => {
+      items.forEach((item) => {
+        item.classList.add("is-reveal-ready");
+        observer.observe(item);
+      });
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      observer.disconnect();
+    };
   }, [effectKey, scopeRef]);
 }
