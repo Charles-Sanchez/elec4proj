@@ -308,7 +308,7 @@
 
 .me-media-grid {
   display: grid;
-  gap: 1rem;
+  gap: 1.25rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-self: stretch;
 }
@@ -432,12 +432,27 @@
 .me-lab-grid,
 .me-footer__inner {
   display: grid;
-  gap: 1.2rem;
+  gap: 1.35rem;
 }
 
 .me-overview-grid,
 .me-curriculum-grid {
   margin-top: 1.8rem;
+}
+
+.me-section-heading + .me-split-grid,
+.me-section-heading + .me-outcome-grid,
+.me-section-heading + .me-career-grid,
+.me-section-heading + .me-detail-grid,
+.me-section-heading + .me-card-grid {
+  margin-top: 1.9rem;
+}
+
+.me-curriculum-grid + .me-detail-grid,
+.me-card-grid + .me-outcome-grid,
+.me-card-grid + .me-panel--wide,
+.me-detail-grid + .me-panel--wide {
+  margin-top: 1.6rem;
 }
 
 .me-panel {
@@ -480,6 +495,14 @@
   font-size: 0.95rem;
 }
 
+.me-panel__title + .me-bullet-list,
+.me-panel__title + .me-member-grid,
+.me-panel__body + .me-bullet-list,
+.me-panel__body + .me-member-grid,
+.me-panel__body + .me-lab-grid {
+  margin-top: 1.05rem;
+}
+
 .me-credential-list {
   display: grid;
   gap: 0.85rem;
@@ -510,7 +533,7 @@
 .me-career-grid,
 .me-member-grid {
   display: grid;
-  gap: 1rem;
+  gap: 1.2rem;
 }
 
 .me-stat-strip {
@@ -543,7 +566,7 @@
 
 .me-stack-list {
   display: grid;
-  gap: 1rem;
+  gap: 1.2rem;
 }
 
 .me-list-card {
@@ -591,7 +614,7 @@
 .me-bullet-list,
 .me-lab-list {
   display: grid;
-  gap: 0.85rem;
+  gap: 0.95rem;
 }
 
 .me-bullet-list__item {
@@ -825,7 +848,14 @@
   }
 
   .me-media-grid {
-    grid-template-rows: 16.5rem 15rem 15rem;
+    grid-template-rows: 16.5rem 15.35rem 15.35rem;
+  }
+
+  .me-media-slot--wide,
+  .me-media-slot--tall,
+  .me-media-slot--square {
+    min-height: 0;
+    height: 100%;
   }
 
   .me-cta-panel {
