@@ -107,7 +107,6 @@ export function MEFooter({ dept }: { dept: ChromeDept }) {
           <div className="me-footer__links">
             <Link to={`/dept/${dept.code}`}>Program Page</Link>
             <Link to={dept.excellencePage.path}>Performance and Extension</Link>
-            <Link to={`/dept/${dept.code}/admin`}>ME Admin</Link>
           </div>
         </div>
 
