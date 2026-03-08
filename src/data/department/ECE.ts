@@ -19,7 +19,7 @@ export const ECE = {
   programOverview: {
     heading: "Program Overview",
     text: "Edit this Program Overview text for this department.",
-    stats: { nonTeaching: 0, faculty: 0, students: 0 },
+    stats: { nonTeaching: 0, faculty: 24, students: 0 },
   },
 
   peo: {
