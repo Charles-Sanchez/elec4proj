@@ -20,11 +20,11 @@ export const MEE = {
   programOverview: {
     heading: "Program Overview",
     text:
-      "Mechatronics Engineering integrates mechanical systems, electronics, control systems, and computing to design and develop intelligent machines and automated systems.",
+      "The Bachelor of Science in Mechatronics Engineering (BSMEE) program at Bulacan State University is a multidisciplinary engineering program designed to address the growing demand for highly skilled engineers capable of integrating mechanical, electrical, electronics, and computer engineering systems. It was developed in response to the increasing technology gap between traditional engineering graduates and the evolving needs of high-technology industries.\n\nThe program adopts a systems integration approach, combining core engineering disciplines with modern informatics to design and develop intelligent products and automated processes. It emphasizes both theoretical knowledge and hands-on application, with approximately equal focus on classroom instruction and laboratory/project-based learning.",
     stats: {
       nonTeaching: 14,
-      faculty: 9,
-      students: 500,
+      faculty: 1445,
+      students: 50,
     },
   },
 
@@ -62,15 +62,63 @@ export const MEE = {
     ],
   },
 
-  curriculum: {
-    title: "Curriculum Overview",
-    text:
-      "The curriculum develops strong foundations in mathematics and engineering sciences, then advances to automation, robotics, embedded systems, control engineering, and intelligent machine design.",
-    bullets: [
-      "Strong math and engineering science foundation",
-      "Core mechatronics: sensors, actuators, control systems, embedded systems",
-      "Integration of robotics, automation, and intelligent machines",
-    ],
+  "curriculum": {
+    "title": "Bachelor of Science in Mechatronics Engineering (BSMEE)",
+    "subtitle": "Bulacan State University – Revised 2024 Curriculum",
+    "text": "The Bachelor of Science in Mechatronics Engineering (BSMEE) program is a comprehensive and interdisciplinary curriculum that integrates mechanical engineering, electrical engineering, electronics, control systems, and computer engineering. It equips students with the knowledge and technical competencies required to design, develop, and maintain automated and intelligent systems used in modern industries.",
+    "structure": "The curriculum is structured over four (4) academic years, combining general education, foundational engineering sciences, professional courses, and practical industry exposure.",
+    "years": [
+      {
+        "title": "First Year: Foundations",
+        "description": "The first year focuses on building strong foundations in mathematics, natural sciences, communication, and basic engineering principles. It develops analytical thinking, problem-solving skills, and fundamental technical competencies.",
+        "bullets": [
+          "Calculus and Engineering Mathematics",
+          "Chemistry and Physics for Engineers",
+          "Introduction to Engineering and Mechatronics",
+          "Computer Programming and Engineering Drawing",
+          "General Education courses (e.g., Communication, Ethics, and History)"
+        ]
+      },
+      {
+        "title": "Second Year: Core Engineering Sciences",
+        "description": "The second year emphasizes fundamental engineering concepts and analytical tools. Laboratory courses are integrated to strengthen hands-on skills and the practical application of theories.",
+        "bullets": [
+          "Differential Equations and Data Analysis",
+          "Engineering Mechanics and Thermodynamics",
+          "Electric Circuits and Electronics",
+          "Fluid Technology and Mechanical Processes",
+          "Computer-Aided Design (2D and 3D)"
+        ]
+      },
+      {
+        "title": "Third Year: Mechatronics Integration and Specialization",
+        "description": "The third year introduces advanced and specialized mechatronics topics while preparing students for innovation, project development, and industrial practice.",
+        "bullets": [
+          "Electromechanical Energy Conversion",
+          "Control Systems and Electric Drives",
+          "Programmable Logic Controllers (PLC)",
+          "Microcontrollers and Embedded Systems",
+          "CNC, Fluid Systems, and Logic Circuits",
+          "Database Systems and Industrial Applications",
+          "Methods of Research and Technopreneurship",
+          "On-the-Job Training (OJT)"
+        ]
+      },
+      {
+        "title": "Fourth Year: Advanced Applications and Design",
+        "description": "The final year focuses on system integration, emerging technologies, and professional preparation. Students complete a capstone project and other culminating requirements.",
+        "bullets": [
+          "Artificial Intelligence in Mechatronics",
+          "Process Instrumentation and Control",
+          "Motion Control and Industrial Communication Systems",
+          "Industrial Robotics and Machine Vision",
+          "SCADA and HMI Design",
+          "Systems Integration and Troubleshooting",
+          "Project Study I & II",
+          "Seminars, field trips, electives, and comprehensive examination"
+        ]
+      }
+    ]
   },
 
   laboratories: {
