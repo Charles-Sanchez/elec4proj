@@ -160,40 +160,60 @@ export default function CPEPage() {
       {/* --- ABOUT SECTION --- */}
       <section
         id="about"
-        className="w-full bg-slate-950 py-20 my-10 border-y-4 border-yellow-400"
+        className="w-full bg-slate-950 py-24 my-10 border-y-4 border-yellow-400"
       >
         <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <div className="text-left flex-1">
-              <div className="text-xs font-bold tracking-[0.2em] text-yellow-400 uppercase mb-3">
-                {dept.programOverview.heading}
-              </div>
-              <h2 className="text-3xl font-black text-white mb-4 uppercase tracking-tighter">
-                Mission & Vision
-              </h2>
-              <p className="text-base text-slate-300 leading-relaxed max-w-3xl">
-                {dept.programOverview.text}
+          {/* 1. PRIMARY PROGRAM OVERVIEW (Large Format) */}
+          <div className="mb-20">
+            <div className="text-xs font-bold tracking-[0.3em] text-yellow-400 uppercase mb-4">
+              {dept.programOverview.heading}
+            </div>
+            <h2 className="text-5xl md:text-7xl font-black text-white leading-[0.95] tracking-tighter uppercase mb-8">
+              The Future of <br />
+              <span className="text-yellow-400">Computer Engineering</span>
+            </h2>
+            <p className="text-lg md:text-xl text-slate-300 leading-relaxed max-w-4xl font-medium">
+              {dept.programOverview.text}
+            </p>
+          </div>
+
+          {/* 2. MISSION & VISION (Separate Section Holders) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20 border-t border-slate-800 pt-16">
+            <div className="relative group">
+              <div className="absolute -left-4 top-0 h-full w-1 bg-yellow-400 opacity-50 group-hover:opacity-100 transition-opacity" />
+              <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-4">
+                Our Mission
+              </h3>
+              <p className="text-slate-400 text-base leading-relaxed">
+                {/* Ensure dept.mission is defined in your CPE.ts */}
+                {dept.programOverview.mission ||
+                  "To provide high-quality instruction and research-driven education in the field of Computer Engineering."}
+              </p>
+            </div>
+
+            <div className="relative group">
+              <div className="absolute -left-4 top-0 h-full w-1 bg-yellow-400 opacity-50 group-hover:opacity-100 transition-opacity" />
+              <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-4">
+                Our Vision
+              </h3>
+              <p className="text-slate-400 text-base leading-relaxed">
+                {/* Ensure dept.vision is defined in your CPE.ts */}
+                {dept.programOverview.vision ||
+                  "A leading center of excellence recognized for producing innovative and globally competitive computer engineers."}
               </p>
             </div>
           </div>
 
-          {/* Stats Grid with visible separation */}
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-0 border border-slate-800 rounded-3xl overflow-hidden">
-            <Stat
-              value={dept.programOverview.stats.nonTeaching}
-              label="Non-Teaching Personnel"
-              accentHex="#facc15" // Yellow-400
-            />
-            <Stat
-              value={dept.programOverview.stats.faculty}
-              label="Faculty"
-              accentHex="#facc15"
-            />
-            <Stat
-              value={dept.programOverview.stats.students}
-              label="Enrolled Students"
-              accentHex="#facc15"
-            />
+          {/* 3. DYNAMIC STATS GRID (Mapped from the array in CPE.ts) */}
+          <div className="grid grid-cols-1 md:grid-flow-col md:auto-cols-fr border border-slate-800 rounded-3xl overflow-hidden shadow-2xl shadow-yellow-400/5">
+            {dept.programOverview.stats.map((stat: any, idx: number) => (
+              <Stat
+                key={idx}
+                value={stat.value}
+                label={stat.label}
+                accentHex={stat.highlight ? "#facc15" : "#94a3b8"}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -369,14 +389,14 @@ function Stat({
   label,
   accentHex,
 }: {
-  value: number;
+  value: number | string;
   label: string;
   accentHex: string;
 }) {
   return (
     <div className="bg-slate-900/50 p-10 border-slate-800 border-r last:border-r-0 hover:bg-slate-900 transition-colors group">
-      <div 
-        className="text-5xl font-black tracking-tighter transition-transform group-hover:scale-110 duration-300" 
+      <div
+        className="text-5xl font-black tracking-tighter transition-transform group-hover:scale-110 duration-300"
         style={{ color: accentHex }}
       >
         {value}
