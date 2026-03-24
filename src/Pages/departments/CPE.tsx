@@ -646,30 +646,12 @@ export default function CPEPage() {
                     {lab}
                   </h3>
                 </div>
-
-                <div className="mt-8 flex items-center text-slate-500 transition-colors duration-300 group-hover:text-yellow-500">
-                  <span className="text-sm font-semibold uppercase tracking-wider">
-                    Explore Facility
-                  </span>
-                  <svg
-                    className="w-5 h-5 ml-2 transform transition-all duration-300 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
+
       {/* --- FACULTY SECTION : SECURE ID BADGE APPROACH --- */}
       <section
         id="faculty"
@@ -806,40 +788,207 @@ export default function CPEPage() {
           </div>
         </div>
       </section>
-      ``
-      {/* --- CAREERS SECTION --- */}
-      <section id="careers" className="max-w-6xl mx-auto px-6 pt-16">
-        <SectionTitle
-          center
-          eyebrow={dept.title}
-          title={dept.careers.title}
-          subtitle={dept.careers.subtitle}
-        />
+      {/* --- CAREERS SECTION : JOB MARKET TERMINAL --- */}
+      <section
+        id="careers"
+        className="relative w-full bg-slate-950 py-24 overflow-hidden border-t border-slate-900"
+      >
+        {/* Ambient Tech Background */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-blue-900/10 via-slate-950 to-slate-950 z-0 pointer-events-none" />
 
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-5">
-          {dept.careers.cards.map((card, idx) => (
-            <div
-              key={idx}
-              className="rounded-2xl border bg-white p-6 text-center"
-            >
-              <div className="text-3xl" aria-hidden="true">
-                {card.icon}
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="text-yellow-500 [&_h2]:text-white mb-16">
+            <SectionTitle
+              eyebrow="Industry Placements"
+              title={dept.careers.title}
+              subtitle="Backed by recent engineering tracer studies and alumni data."
+            />
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            {/* LEFT PANEL: Factual Tracer Study Stats */}
+            <div className="lg:col-span-5 flex flex-col h-full">
+              <div className="flex-1 bg-slate-900 border border-slate-800 rounded-3xl p-8 relative overflow-hidden group hover:border-blue-500/30 transition-colors duration-500">
+                {/* Background Watermark Icon */}
+                <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none">
+                  <svg
+                    className="w-32 h-32 text-blue-500"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                      stroke="currentColor"
+                      strokeWidth="1"
+                      fill="none"
+                    />
+                  </svg>
+                </div>
+
+                <h3 className="text-xl font-bold text-white mb-8 uppercase tracking-tight flex items-center gap-3">
+                  <span className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_#22c55e]" />
+                  Alumni Placement Data
+                </h3>
+
+                <div className="space-y-8 relative z-10">
+                  {/* Stat 1: Employability */}
+                  <div>
+                    <div className="flex justify-between items-end mb-2">
+                      <span className="text-sm text-slate-400 font-mono tracking-tight">
+                        Employability Rate
+                      </span>
+                      <span className="text-2xl text-yellow-400 font-black leading-none">
+                        93%
+                      </span>
+                    </div>
+                    <div className="w-full bg-slate-950 border border-slate-800 h-3 rounded-full overflow-hidden">
+                      <div className="bg-gradient-to-r from-yellow-600 to-yellow-400 w-[93%] h-full rounded-full" />
+                    </div>
+                  </div>
+
+                  {/* Stat 2: Placement Speed */}
+                  <div>
+                    <div className="flex justify-between items-end mb-2">
+                      <span className="text-sm text-slate-400 font-mono tracking-tight">
+                        Hired within 1-6 Months
+                      </span>
+                      <span className="text-2xl text-blue-400 font-black leading-none">
+                        &gt;56%
+                      </span>
+                    </div>
+                    <div className="w-full bg-slate-950 border border-slate-800 h-3 rounded-full overflow-hidden">
+                      <div className="bg-gradient-to-r from-blue-700 to-blue-400 w-[60%] h-full rounded-full" />
+                    </div>
+                  </div>
+
+                  {/* Contextual Note */}
+                  <div className="bg-slate-950/60 border border-slate-800 p-5 rounded-xl mt-6 border-l-2 border-l-yellow-500">
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      <strong>Industry Demand:</strong> BulSU Engineering
+                      graduates are highly sought after across the Philippines,
+                      establishing robust careers in software engineering,
+                      embedded systems, and enterprise IT infrastructure.
+                    </p>
+                  </div>
+                </div>
               </div>
-              <h3 className="mt-4 font-bold text-gray-900">{card.title}</h3>
-              <p className="mt-2 text-sm text-gray-600">{card.text}</p>
             </div>
-          ))}
+
+            {/* RIGHT PANEL: Career Tracks Grid */}
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5 h-full">
+              {dept.careers.cards.map((card: any, idx: number) => (
+                <div
+                  key={idx}
+                  className="group flex flex-col justify-between bg-slate-900/40 border border-slate-800 p-7 rounded-3xl transition-all duration-300 hover:-translate-y-2 hover:bg-slate-900 hover:border-yellow-500/50 hover:shadow-[0_15px_30px_-10px_rgba(234,179,8,0.2)]"
+                >
+                  <div className="mb-6 flex items-center justify-between">
+                    <div className="w-14 h-14 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-500 group-hover:border-yellow-500/50 group-hover:shadow-[0_0_15px_rgba(234,179,8,0.2)]">
+                      {card.icon}
+                    </div>
+                    <span className="text-[10px] font-mono text-slate-600 uppercase tracking-widest group-hover:text-yellow-500/70 transition-colors">
+                      Path_0{idx + 1}
+                    </span>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-3 tracking-tight group-hover:text-yellow-400 transition-colors">
+                      {card.title}
+                    </h3>
+                    <p className="text-sm text-slate-400 leading-relaxed">
+                      {card.text}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
-      {/* --- CONTACT SECTION --- */}
-      <section id="contact" className="max-w-6xl mx-auto px-6 pt-16">
-        <div className="rounded-2xl border bg-gray-50 p-6 md:p-8">
-          <h2 className="text-xl font-bold text-gray-900">
-            Department Contact
-          </h2>
-          <p className="mt-2 text-sm text-gray-600">
-            Add contact details for {dept.title} in this section.
-          </p>
+      {/* --- CONTACT SECTION : SECURE COMMS GATEWAY --- */}
+      <section
+        id="contact"
+        className="relative w-full bg-slate-950 py-32 overflow-hidden border-t border-slate-900"
+      >
+        {/* Circuit Board Background Subdued */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20 pointer-events-none" />
+
+        <div className="relative z-10 max-w-4xl mx-auto px-6">
+          <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-700 rounded-[2.5rem] p-10 md:p-16 text-center relative overflow-hidden group shadow-2xl shadow-blue-900/10">
+            {/* Animated Scanner Line Effect */}
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+
+            <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tight mb-4">
+              Establish Connection
+            </h2>
+            <p className="text-slate-400 text-base max-w-xl mx-auto mb-12">
+              Reach out to the Department of Computer Engineering for academic
+              inquiries, industry partnerships, and alumni relations.
+            </p>
+
+            <div className="flex flex-col md:flex-row justify-center items-center gap-6">
+              {/* Email Button Node */}
+              <a
+                href="mailto:coe@bulsu.edu.ph"
+                className="flex items-center gap-4 bg-slate-950 border border-slate-800 px-8 py-5 rounded-2xl hover:border-yellow-500 hover:shadow-[0_0_25px_rgba(234,179,8,0.2)] hover:-translate-y-1 transition-all duration-300 w-full md:w-auto"
+              >
+                <span className="text-yellow-500">
+                  <svg
+                    className="w-8 h-8"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                </span>
+                <div className="text-left">
+                  <p className="text-[10px] font-mono text-slate-500 uppercase tracking-widest">
+                    Comm Link
+                  </p>
+                  <p className="text-base font-bold text-slate-200">
+                    coe@bulsu.edu.ph
+                  </p>
+                </div>
+              </a>
+
+              {/* Location Button Node */}
+              <div className="flex items-center gap-4 bg-slate-950 border border-slate-800 px-8 py-5 rounded-2xl hover:border-blue-500 hover:shadow-[0_0_25px_rgba(59,130,246,0.2)] hover:-translate-y-1 transition-all duration-300 w-full md:w-auto cursor-default">
+                <span className="text-blue-500">
+                  <svg
+                    className="w-8 h-8"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                  </svg>
+                </span>
+                <div className="text-left">
+                  <p className="text-[10px] font-mono text-slate-500 uppercase tracking-widest">
+                    Headquarters
+                  </p>
+                  <p className="text-base font-bold text-slate-200">
+                    Natividad Hall, BulSU Main
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       <Footer />

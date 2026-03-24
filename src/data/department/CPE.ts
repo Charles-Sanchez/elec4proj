@@ -8,12 +8,12 @@ export const CPE = {
   theme: { accentHex: "#2563eb" },
 
   images: {
-    heroLeft: `${base}/hero-left.png`,
-    heroBig: `${base}/hero-big.png`,
-    heroSmall1: `${base}/hero-small-1.png`,
-    heroSmall2: `${base}/hero-small-2.png`,
-    peo: `${base}/`,
-    watermark: `${base}/watermark.png`,
+    heroLeft: `${base}/R3_pubmat.jpg`,
+    heroBig: `${base}/Collo_team_samp.jpg`,
+    heroSmall1: `${base}/quizzers_sample.jpg`,
+    heroSmall2: `${base}/DSC_1611.JPG`,
+    peo: `${base}/temp_peo.png`,
+    watermark: `${base}/Dean_Off_samp.jpg`,
   },
 
   hero: {
