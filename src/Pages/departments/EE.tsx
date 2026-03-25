@@ -490,7 +490,7 @@ export default function EEPage() {
             onClick={() => setActiveIdx((prev) => (prev < members.length - 1 ? prev + 1 : 0))}
             className="absolute right-1 md:right-15 top-1/2 -translate-y-1/2 z-50 bg-white/95 backdrop-blur-md p-2 md:p-3 rounded-full shadow-lg border border-red-100 text-red-900 hover:bg-red-900 hover:text-white transition-all active:scale-90"
           >
-            <span className="text-[10px] font-bold">➜</span>
+            <span className="block text-[10px] font-bold">➜</span>
           </button>
 
           <div className="relative h-full flex items-center justify-center">
