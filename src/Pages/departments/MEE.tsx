@@ -6,6 +6,21 @@ import Footer from "../../components/Footer";
 import { mergeDeptWithOverrides } from "../../lib/departmentAdmin";
 import { MEE } from "../../data/department/MEE";
 import "../../styles/departments/MEE.css";
+import {
+  Lightbulb,
+  Users,
+  FlaskConical,
+  ShieldCheck,
+  Wrench,
+  MessageSquare,
+  Search,
+  Globe,
+  BookOpen,
+  Scale,
+  Cpu,
+  Briefcase,
+  Cog,
+} from "lucide-react";
 
 export default function MEEPage() {
   const [baseDept] = useState<typeof MEE>(MEE);
@@ -226,7 +241,7 @@ export default function MEEPage() {
           </div>
 
           <div className="col-span-12 md:col-span-6">
-            <div className="space-y-5">
+            <div className="space-y-6">
               {dept.peo.bullets.map((b, idx) => (
                 <Bullet key={idx} title={`PEO ${idx + 1}`} text={b} />
               ))}
@@ -245,7 +260,12 @@ export default function MEEPage() {
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
           {dept.so.outcomes.map((o, idx) => (
-            <OutcomeCard key={idx} title={o.title} text={o.text} />
+            <OutcomeCard
+              key={idx}
+              title={o.title}
+              text={o.text}
+              icon={outcomeIcons[idx]}
+            />
           ))}
         </div>
       </section>
@@ -354,20 +374,42 @@ export default function MEEPage() {
       </section>
 
       <section id="faculty" className="max-w-6xl mx-auto px-6 pt-16">
-        <SectionTitle center eyebrow={dept.title} title={dept.faculty.title} />
+  <SectionTitle center eyebrow={dept.title} title={dept.faculty.title} />
 
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-5">
-          {dept.faculty.members.map((member, idx) => (
-            <div
-              key={`${member.name}-${idx}`}
-              className="rounded-2xl border bg-white p-6"
-            >
-              <h3 className="font-bold text-gray-900">{member.name}</h3>
-              <p className="mt-1 text-sm text-gray-600">{member.role}</p>
-            </div>
-          ))}
+  <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    {dept.faculty.members.map((member, idx) => (
+      <div
+        key={`${member.name}-${idx}`}
+        className="
+          group overflow-hidden rounded-[2rem] border border-gray-200 bg-white
+          transition-all duration-300
+          hover:-translate-y-2
+          hover:shadow-[0_15px_30px_rgba(28,99,139,0.22)]
+        "
+      >
+        <div className="h-64 w-full overflow-hidden bg-gray-200">
+          <img
+            src={member.image}
+            alt={member.name}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
         </div>
-      </section>
+
+        <div className="p-5 text-center transition-colors duration-300 group-hover:bg-[#1c638b]">
+          <h3 className="text-base font-bold uppercase leading-snug text-[#1c638b] transition-colors duration-300 group-hover:text-white">
+            {member.name}
+          </h3>
+
+          <div className="mx-auto my-3 h-[2px] w-14 bg-[#1c638b]/30 transition-colors duration-300 group-hover:bg-white/50" />
+
+          <p className="text-sm font-semibold uppercase tracking-wider text-gray-500 transition-colors duration-300 group-hover:text-white/85">
+            {member.role}
+          </p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
 
       <section id="careers" className="max-w-6xl mx-auto px-6 pt-16">
         <SectionTitle
@@ -431,17 +473,68 @@ function Stat({
 function Bullet({ title, text }: { title: string; text: string }) {
   return (
     <div>
-      <div className="font-semibold text-gray-900">{title}</div>
-      <div className="mt-1 text-sm text-gray-500">{text}</div>
+      <div className="text-lg font-bold text-gray-900">
+        {title}
+      </div>
+      <div className="mt-1 text-sm text-gray-600 text-justify leading-relaxed">
+        {text}
+      </div>
     </div>
   );
 }
 
-function OutcomeCard({ title, text }: { title: string; text: string }) {
+const outcomeIcons = [
+  Lightbulb,
+  Users,
+  FlaskConical,
+  ShieldCheck,
+  Wrench,
+  MessageSquare,
+  Search,
+  Globe,
+  BookOpen,
+  Scale,
+  Cpu,
+  Briefcase,
+  Cog,
+
+];
+function OutcomeCard({
+  title,
+  text,
+  icon: Icon,
+}: {
+  title: string;
+  text: string;
+  icon: any;
+}) {
   return (
-    <div className="rounded-2xl border bg-white p-6 text-center">
-      <div className="mt-4 font-semibold text-gray-900">{title}</div>
-      <div className="mt-2 text-sm text-gray-500">{text}</div>
+    <div
+      className="
+        group relative rounded-2xl border border-gray-200 bg-white p-6 text-center
+        transition-all duration-300
+        hover:-translate-y-2
+        hover:bg-[#1c638b]
+        hover:shadow-[0_15px_30px_rgba(28,99,139,0.25)]
+      "
+    >
+      <div
+        className="
+          mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl
+          bg-[#1c638b]/10 transition
+          group-hover:bg-white/20
+        "
+      >
+        <Icon className="h-6 w-6 text-[#1c638b] group-hover:text-white" />
+      </div>
+
+      <div className="text-lg font-bold text-gray-900 transition group-hover:text-white">
+        {title}
+      </div>
+
+      <div className="mt-2 text-sm leading-relaxed text-gray-500 transition group-hover:text-white/90">
+        {text}
+      </div>
     </div>
   );
 }

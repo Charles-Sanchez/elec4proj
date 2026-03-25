@@ -33,32 +33,83 @@ export const MEE = {
     subtitle:
       "Graduates are expected to achieve the following objectives a few years after graduation:",
     bullets: [
-      "Practice mechatronics engineering professionally in industry, government, or entrepreneurship.",
-      "Demonstrate leadership, teamwork, and ethical responsibility in multidisciplinary environments.",
-      "Engage in lifelong learning through advanced studies, training, certifications, and professional development.",
+      "Graduates will demonstrate their Mechatronics engineering role in their field of work to cope with the needs and demands of the industry.",
+      "Graduates will pursue lifelong learning through engagement and participation in continued professional development that expands their skills to adapt to the changing needs of the Mechatronics engineering profession and community.",
+      "Graduates will engage in community efforts for economic progress and/or environmental conservation/restoration.",
     ],
   },
 
   so: {
-    title: "Student Outcomes",
+    title: "Program Outcomes",
     subtitle:
       "By the time of graduation, students are expected to attain the following outcomes:",
     outcomes: [
       {
-        title: "Engineering Knowledge",
+        title: "A. Knowledge Application",
         text:
-          "Apply knowledge of mathematics, science, engineering fundamentals, and specialization to solve complex engineering problems.",
+          "Apply knowledge of mathematics, natural science, engineering fundamentals and an engineering specialization to the solution of complex engineering problems.",
       },
       {
-        title: "Problem Analysis",
+        title: "B. Research & Investigation",
         text:
-          "Identify, formulate, research literature, and analyze complex engineering problems to reach substantiated conclusions.",
+          "Conduct investigations of complex engineering problems using research-based knowledge and research methods including design of experiments, analysis and interpretation of data, and synthesis of information to provide valid conclusions.",
       },
       {
-        title: "Design / Development",
+        title: "C. Solution Design",
         text:
-          "Design solutions for complex engineering problems and design system components or processes that meet specified needs with appropriate consideration for health, safety, culture, society, and environment.",
+          "Design solutions for complex engineering problems and design systems, components or processes that meet specified needs with appropriate consideration for public health and safety, cultural, societal, and environmental considerations.",
       },
+      {
+        title: "D. Teamwork & Leadership",
+        text:
+          "Function effectively as an individual, and as a member or leader in diverse teams and in multi-disciplinary settings.",
+      },
+      {
+        title: "E. Problem Analysis",
+        text:
+          "Identify, formulate, research literature and analyze complex engineering problems reaching substantiated conclusions using first principles of mathematics, natural sciences and engineering sciences.",
+      },
+      {
+        title: "F. Ethical Responsibility",
+        text:
+          "Apply ethical principles and commit to professional ethics and responsibilities and norms of engineering practice.",
+      },
+      {
+        title: "G. Effective Communication",
+        text:
+          "Communicate effectively on complex engineering activities with the engineering community and with society at large, such as being able to comprehend and write effective reports and design documentation, make effective presentations, and give and receive clear instructions.",
+      },
+      {
+        title: "H. Sustainability Impact",
+        text:
+          "Understand and evaluate the sustainability and impact of professional engineering work in the solution of complex engineering problems in societal and environmental context.",
+      },
+      {
+        title: "I. Lifelong Learning",
+        text:
+          "Recognize the need for, and have the preparation and ability to engage in independent and life-long learning in the broadest context of technological change.",
+      },
+      {
+        title: "J. Contextual Reasoning",
+        text:
+          "Apply reasoning informed by contextual knowledge to assess societal, health, safety, legal and cultural issues and the consequent responsibilities relevant to professional engineering practice and solutions to complex engineering problems.",
+      },
+      {
+        title: "K. Modern Tools",
+        text:
+          "Create, select and apply appropriate techniques, resources, and modern engineering and IT tools, including prediction and modelling, to complex engineering problems with an understanding of the limitations.",
+      },
+      {
+        title: "L. Management & Decision-making",
+        text:
+          "Demonstrate knowledge and understanding of engineering management principles and economic decision-making and apply these to one’s own work, as a member and leader in a team, to manage projects and in multidisciplinary environments.",
+      },
+      {
+        title: "M",
+        text:
+          "Understand at least one specialized field of Mechatronics Engineering practice.",
+      },
+
     ],
   },
 
@@ -134,10 +185,27 @@ export const MEE = {
   faculty: {
     title: "Faculty",
     members: [
-      { name: "Engr. Sample Faculty 1", role: "Department Chair" },
-      { name: "Engr. Sample Faculty 2", role: "Faculty Member" },
-      { name: "Engr. Sample Faculty 3", role: "Faculty Member" },
-    ],
+      {
+        name: "ENGR. SAMPLE NAME",
+        role: "FACULTY",
+        image: "/faculty/sample.jpg",
+      },
+      {
+        name: "ENGR. SAMPLE NAME",
+        role: "FACULTY",
+        image: "/faculty/sample.jpg",
+      },
+      {
+        name: "ENGR. SAMPLE NAME",
+        role: "FACULTY",
+        image: "/faculty/sample.jpg",
+      },
+      {
+        name: "ENGR. SAMPLE NAME",
+        role: "FACULTY",
+        image: "/faculty/sample.jpg",
+      },
+    ]
   },
 
   careers: {
