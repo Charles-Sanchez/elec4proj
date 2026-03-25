@@ -231,25 +231,43 @@ export default function MEEPage() {
           subtitle={dept.peo.subtitle}
         />
 
-        <div className="mt-10 grid grid-cols-12 gap-8 items-start">
-          <div className="col-span-12 md:col-span-6">
-            <div className="rounded-2xl overflow-hidden bg-gray-200">
-              <img
-                src={dept.images.peo}
-                alt=""
-                className="w-full h-[320px] md:h-[360px] object-cover"
-              />
-            </div>
-          </div>
+<div className="mt-10 grid grid-cols-12 gap-8 items-start">
 
-          <div className="col-span-12 md:col-span-6">
-            <div className="space-y-6">
-              {dept.peo.bullets.map((b, idx) => (
-                <Bullet key={idx} title={`PEO ${idx + 1}`} text={b} />
-              ))}
-            </div>
-          </div>
+  {/* IMAGE */}
+  <div className="col-span-12 md:col-span-6 overflow-hidden">
+    <div className="w-full h-[260px] md:h-[320px] rounded-2xl overflow-hidden flex items-center justify-center">
+      
+      <img
+        src={dept.images.peo}
+        alt="Mechatronics Gears"
+        className="w-full h-full object-contain p-6"
+      />
+
+    </div>
+  </div>
+
+  {/* TEXT */}
+  <div className="col-span-12 md:col-span-6 min-w-0">
+    <div className="space-y-6">
+      
+      {dept.peo.bullets.map((b, idx) => (
+        <div key={idx}>
+          
+          <h4 className="text-lg font-semibold text-gray-800">
+            PEO {idx + 1}
+          </h4>
+
+          <p className="mt-2 text-gray-600 leading-relaxed text-justify break-words">
+            {b}
+          </p>
+
         </div>
+      ))}
+
+    </div>
+  </div>
+
+</div>
       </section>
 
       <section id="so" className="mt-10 max-w-6xl mx-auto px-6 pt-16">
