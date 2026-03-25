@@ -52,49 +52,93 @@ export default function MEEPage() {
           </div>
         </div>
 
-        <div className="mt-8 grid grid-cols-12 gap-5">
-          <div className="col-span-12 md:col-span-4">
-            <div className="h-[380px] md:h-[440px] rounded-2xl overflow-hidden bg-gray-200">
-              <img
-                src={dept.images.heroLeft}
-                alt=""
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
+<div className="mt-8 grid grid-cols-12 gap-5">
+  <div className="col-span-12 md:col-span-4">
+    <div className="group h-[380px] md:h-[620px] rounded-2xl overflow-hidden bg-gray-200 
+                    transition-all duration-500 ease-out 
+                    hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
 
-          <div className="col-span-12 md:col-span-8 grid grid-cols-12 gap-5">
-            <div className="col-span-12">
-              <div className="h-[220px] md:h-[240px] rounded-2xl overflow-hidden bg-gray-200">
-                <img
-                  src={dept.images.heroBig}
-                  alt=""
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
+      <div className="w-full h-full relative overflow-hidden">
+        <img
+          src={dept.images.heroLeft}
+          alt=""
+          className="w-full h-full object-cover 
+                     transition-transform duration-700 ease-out 
+                     group-hover:scale-110"
+        />
 
-            <div className="col-span-12 md:col-span-6">
-              <div className="h-[160px] rounded-2xl overflow-hidden bg-gray-200">
-                <img
-                  src={dept.images.heroSmall1}
-                  alt=""
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
+        {/* gradient overlay */}
+        <div className="absolute inset-0 bg-black/10 
+                        opacity-0 group-hover:opacity-100 
+                        transition duration-500"></div>
+      </div>
+    </div>
+  </div>
 
-            <div className="col-span-12 md:col-span-6">
-              <div className="h-[160px] rounded-2xl overflow-hidden bg-gray-200">
-                <img
-                  src={dept.images.heroSmall2}
-                  alt=""
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
+  <div className="col-span-12 md:col-span-8 grid grid-cols-12 gap-5">
+    
+    <div className="col-span-12">
+      <div className="group h-[300px] rounded-2xl overflow-hidden bg-gray-200 
+                      transition-all duration-500 ease-out 
+                      hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
+        
+        <div className="w-full h-full relative overflow-hidden">
+          <img
+            src={dept.images.heroBig}
+            alt=""
+            className="w-full h-full object-cover 
+                       transition-transform duration-700 ease-out 
+                       group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-black/10 
+                          opacity-0 group-hover:opacity-100 
+                          transition duration-500"></div>
         </div>
+      </div>
+    </div>
+
+    <div className="col-span-12 md:col-span-6">
+      <div className="group h-[300px] rounded-2xl overflow-hidden bg-gray-200 
+                      transition-all duration-500 ease-out 
+                      hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
+        
+        <div className="w-full h-full relative overflow-hidden">
+          <img
+            src={dept.images.heroSmall1}
+            alt=""
+            className="w-full h-full object-cover 
+                       transition-transform duration-700 ease-out 
+                       group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-black/10 
+                          opacity-0 group-hover:opacity-100 
+                          transition duration-500"></div>
+        </div>
+      </div>
+    </div>
+
+    <div className="col-span-12 md:col-span-6">
+      <div className="group h-[300px] rounded-2xl overflow-hidden bg-gray-200 
+                      transition-all duration-500 ease-out 
+                      hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
+        
+        <div className="w-full h-full relative overflow-hidden">
+          <img
+            src={dept.images.heroSmall2}
+            alt=""
+            className="w-full h-full object-cover 
+                       transition-transform duration-700 ease-out 
+                       group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-black/10 
+                          opacity-0 group-hover:opacity-100 
+                          transition duration-500"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
       </section>
 
       <section id="about" className="max-w-6xl mx-auto px-6 pt-10">
