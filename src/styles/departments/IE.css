@@ -178,21 +178,17 @@
   background: #16a34a;
 }
 
-/* Career Card Polishing */
 
 #careers .group {
-  /* Prevent jagged edges during the lift transition */
   transform: translateZ(0);
   will-change: transform, box-shadow;
 }
 
-/* Make the big background numbers look modern */
 #careers .font-black.text-gray-50 {
   user-select: none;
   pointer-events: none;
 }
 
-/* Soft transition for the power bar */
 .ease-out {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }

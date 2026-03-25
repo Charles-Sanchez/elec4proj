@@ -364,13 +364,10 @@ export default function IEPage() {
         key={idx} 
         className="group relative flex flex-col h-full rounded-[2.5rem] border border-gray-100 bg-white p-10 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_40px_80px_-20px_rgba(22,163,74,0.1)] overflow-hidden"
       >
-        {/* THE SPICE: Full-height Left Power Bar (Only visible on hover) */}
         <div className="absolute left-0 top-0 w-2 h-full bg-gradient-to-b from-[#16a34a] to-[#22c55e] -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out" />
 
-        {/* Soft Background Shimmer */}
         <div className="absolute inset-0 bg-gradient-to-br from-green-50/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
         
-        {/* Top Header */}
         <div className="flex items-center justify-between mb-10 relative z-10">
           <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gray-50 text-4xl transition-all duration-500 group-hover:bg-white group-hover:shadow-lg group-hover:scale-110">
             {card.icon}
@@ -380,7 +377,6 @@ export default function IEPage() {
           </span>
         </div>
 
-        {/* Content Section */}
         <div className="relative z-10 flex-1">
           <h3 className="text-2xl font-black text-gray-900 leading-tight mb-8 group-hover:text-[#16a34a] transition-colors">
             {card.title}
@@ -389,7 +385,6 @@ export default function IEPage() {
           <div className="space-y-4">
             {card.text.split('\n').map((line: string, lIdx: number) => (
               <div key={lIdx} className="group/line flex items-start gap-4">
-                {/* Minimalist Square Bullet */}
                 <div className="mt-1.5 h-1.5 w-1.5 rounded-sm bg-gray-200 group-hover/line:bg-[#16a34a] group-hover/line:scale-125 transition-all duration-300" />
                 <p className="text-sm font-medium text-gray-500 group-hover:text-gray-800 transition-colors">
                   {line.replace('• ', '')}
@@ -399,7 +394,6 @@ export default function IEPage() {
           </div>
         </div>
 
-        {/* Subtle Bottom Detail */}
         <div className="mt-8 pt-6 border-t border-gray-50 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
           <span className="text-[10px] font-black text-[#16a34a] tracking-[0.2em] uppercase">
             Industry Focus Area
