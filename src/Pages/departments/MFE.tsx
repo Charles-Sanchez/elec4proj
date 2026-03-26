@@ -102,14 +102,24 @@ export default function MFEPage() {
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:w-1/2 animate-reveal-down text-center lg:text-left relative z-20">
-              <div className="group inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/40 backdrop-blur-md border border-slate-200 text-slate-500 text-[10px] font-bold tracking-[0.25em] uppercase mb-10 shadow-sm transition-all duration-500 hover:border-black hover:bg-white hover:shadow-xl">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black opacity-20" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-black" />
-                </span>
-                <span className="group-hover:text-black transition-colors duration-500">College of Engineering</span>
-                <span className="text-slate-300 font-light translate-y-[0.5px]">/</span>
-                <span className="text-[8px] opacity-60 group-hover:opacity-100 transition-opacity">BULSU</span>
+              <div className="inline-flex items-center mb-10 cursor-default">
+                <div className="flex items-center gap-3">
+                  <div className="h-6 w-[1.5px] bg-white opacity-80" />
+                  <span className="text-white text-[11px] font-black tracking-tighter uppercase italic">
+                    COE
+                  </span>
+                </div>
+
+                <div className="mx-5 h-[1px] w-6 bg-zinc-800" />
+
+                <div className="flex flex-col justify-center">
+                  <span className="text-zinc-400 text-[10px] font-bold tracking-[0.2em] uppercase leading-none">
+                    College of Engineering
+                  </span>
+                  <span className="text-zinc-600 text-[8px] font-mono tracking-widest mt-1.5 uppercase">
+                    Bulacan State University
+                  </span>
+                </div>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-black tracking-tight leading-none mb-4 uppercase italic">
                 Manufacturing
@@ -121,12 +131,31 @@ export default function MFEPage() {
                 {dept.subtitle}
               </p>
               <div className="flex flex-wrap justify-center lg:justify-start gap-5">
-                <Link to={`/dept/${dept.code}/admin`} className="px-8 py-4 bg-black text-white rounded-lg font-black text-[10px] uppercase tracking-widest shadow-xl hover:bg-slate-800 hover:-translate-y-1 transition-all active:scale-95">Open Department Admin</Link>
+                <Link 
+                  to={`/dept/${dept.code}/admin`} 
+                  className="relative inline-flex items-center gap-6 px-10 py-5 bg-zinc-950 text-white border border-white/10 rounded-sm font-black text-[9px] uppercase tracking-[0.3em] overflow-hidden transition-all duration-500 hover:border-white/40 group"
+                >
+                  <span className="relative z-10">Open Department Admin</span>
+
+                  <svg 
+                    viewBox="0 0 24 24" 
+                    className="w-3 h-3 fill-none stroke-white stroke-[3] transition-transform duration-500 group-hover:translate-x-1"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                </Link>
                 <button 
                   onClick={() => onNav('peo')} 
-                  className="relative z-30 px-8 py-4 bg-white border border-slate-200 text-black rounded-lg font-black text-[10px] uppercase tracking-widest hover:border-black hover:bg-slate-50 transition-all shadow-sm cursor-pointer"
+                  className="group relative px-6 py-3 bg-white text-black rounded-sm overflow-hidden transition-all duration-500 active:scale-95 cursor-pointer whitespace-nowrap"
                 >
-                  Overview
+                  <span className="relative z-10 font-black text-[9px] uppercase tracking-[0.25em] flex items-center gap-2">
+                    Overview
+                    <span className="w-1 h-1 rounded-full bg-black transition-all duration-500 group-hover:w-3" />
+                  </span>
+
+                  <div className="absolute inset-0 bg-zinc-100 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
                 </button>
               </div>
             </div>
@@ -191,30 +220,51 @@ export default function MFEPage() {
       </section>
 
       {/* --- peo --- */}
-      <section id="peo" className="max-w-6xl mx-auto px-6 py-24 relative overflow-hidden">
-        <div className="text-center mb-16 group/header cursor-default">
-          <span className="text-[9px] font-bold text-slate-400 uppercase tracking-[0.4em] block mb-2 group-hover/header:text-black transition-colors duration-500">MANUFACTURING ENGINEERING</span>
-          <h2 className="text-xl md:text-3xl font-black text-black uppercase tracking-tight italic leading-none mb-4">
-            Program Educational <span className="text-slate-600 group-hover/header:text-slate-900 transition-colors duration-700">Objectives (PEO)</span>
-          </h2>
-        </div>
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          <div className="lg:col-span-4 relative group">
-            <div className="relative rounded-xl overflow-hidden shadow-md border-2 border-white">
-              <img src={dept.images.peo} className="w-full h-[300px] md:h-[450px] object-cover transition-all duration-700 group-hover:scale-105" alt="PEO" />
+      <section id="peo" className="max-w-6xl mx-auto px-6 py-24">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+          <div className="w-full lg:w-[400px] shrink-0">
+            <div className="relative group aspect-square bg-zinc-50 border border-zinc-100 overflow-hidden rounded-sm shadow-sm transition-all duration-500 hover:shadow-2xl hover:border-black/10">
+              <img
+                src={dept.images.peo}
+                className="w-full h-full object-cover transition-transform duration-[1500ms] ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-110"
+                alt="PEO Visual"
+              />
+
+              <div className="absolute top-4 left-4 flex flex-col gap-1 pointer-events-none">
+                <div className="h-4 w-[1px] bg-black/20" />
+                <div className="w-4 h-[1px] bg-black/20" />
+              </div>
             </div>
           </div>
-          <div className="lg:col-span-8 relative pl-0 md:pl-10">
-            <div className="absolute left-0 top-0 w-[1px] h-full bg-slate-100 hidden md:block" />
-            <div className="space-y-4">
+
+          <div className="flex-1">
+            <header className="mb-12 group/header cursor-default">
+              <h2 className="text-3xl md:text-4xl font-black text-black uppercase tracking-tighter italic leading-[0.9] mb-4">
+                Program Educational <br />
+                <span className="text-zinc-200 transition-colors duration-700 group-hover/header:text-black">Objectives (PEO)</span>
+              </h2>
+
+              <div className="flex items-center gap-3">
+                <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.4em]">
+                  {dept.peo.subtitle}
+                </span>
+                <div className="flex-1 h-px bg-zinc-100" />
+              </div>
+            </header>
+
+            <div className="grid grid-cols-1">
               {dept.peo.bullets.map((b, idx) => (
-                <div key={idx} className="group relative flex items-start gap-6 p-6 bg-white border border-slate-100 rounded-xl transition-all duration-300 hover:border-black hover:shadow-sm hover:-translate-x-1">
-                  <div className="flex-1 px-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="text-[9px] font-black text-slate-400 group-hover:text-black transition-colors uppercase tracking-[0.2em]">PEO 0{idx + 1}</span>
-                    </div>
-                    <p className="text-slate-600 group-hover:text-black text-[13px] font-medium leading-relaxed transition-colors">{b}</p>
+                <div key={idx} className="group flex flex-col space-y-3 pb-8 border-b border-zinc-50 last:border-0">
+                  <div className="flex items-center gap-3">
+                    <span className="text-[12px] font-black text-black border-b-2 border-black/10 group-hover:border-black transition-all">
+                      0{idx + 1}
+                    </span>
+                    <div className="h-px w-12 bg-zinc-100 group-hover:w-20 group-hover:bg-black transition-all duration-700" />
                   </div>
+
+                  <p className="text-zinc-900 group-hover:text-black text-[13px] font-medium leading-relaxed text-justify transition-colors duration-500 max-w-2xl">
+                    {b}
+                  </p>
                 </div>
               ))}
             </div>
@@ -223,26 +273,67 @@ export default function MFEPage() {
       </section>
 
       {/* --- so --- */}
-      <section id="so" className="bg-black py-28 rounded-[4rem] mx-4 md:mx-12 my-12 relative overflow-hidden shadow-2xl">
+      <section id="so" className="bg-[#050505] py-16 rounded-[2rem] mx-4 md:mx-12 my-8 relative overflow-hidden border border-white/5 shadow-xl">
         <div className="max-w-6xl mx-auto px-8 relative z-10">
-          <div className="mb-20 text-center">
-            <h2 className="text-3xl font-black text-white tracking-tight italic uppercase">Student Outcomes</h2>
-            <p className="text-slate-500 font-black tracking-[0.5em] text-[10px] uppercase mt-4">Competency Framework</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {dept.so.outcomes.map((o, idx) => (
-              <div key={idx} className="p-10 rounded-[2rem] bg-white/5 border border-white/10 hover:bg-white transition-all duration-500 group cursor-default">
-                <div className="text-5xl font-black text-white/5 group-hover:text-black/5 transition-colors mb-8 italic">SO{idx+1}</div>
-                <h3 className="text-white group-hover:text-black font-black text-xs mb-5 uppercase tracking-widest leading-tight">{o.title}</h3>
-                <p className="text-[11px] text-slate-500 group-hover:text-slate-600 leading-relaxed font-medium">{o.text}</p>
+          
+          <div className="mb-10 flex items-end justify-between border-b border-white/5 pb-6">
+            <div className="space-y-2">
+              <h2 className="text-xl md:text-2xl font-black text-white uppercase tracking-tighter italic">
+                Student Outcomes
+              </h2>
+              <div className="flex items-center gap-3">
+                <div className="h-1 w-1 bg-white rounded-full animate-pulse" />
+                <p className="text-zinc-600 font-bold tracking-[0.3em] text-[9px] uppercase">
+                  Framework Registry
+                </p>
               </div>
-            ))}
+            </div>
+            
+            {/* Visual Navigation Hint */}
+            <div className="hidden md:flex items-center gap-4 opacity-30 hover:opacity-100 transition-opacity">
+              <span className="text-[9px] font-mono text-white uppercase tracking-widest">Scroll to Explore</span>
+              <div className="w-12 h-[1px] bg-white/20" />
+            </div>
+          </div>
+
+          <div className="relative">
+            <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 no-scrollbar pb-8 px-1">
+              {dept.so.outcomes.map((o, idx) => (
+                <div 
+                  key={idx} 
+                  className="min-w-[75%] md:min-w-[320px] snap-start p-8 rounded-xl bg-zinc-900/40 border border-white/5 transition-all duration-500 hover:bg-white group cursor-pointer"
+                >
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="text-[10px] font-black text-zinc-500 group-hover:text-black tracking-widest">
+                      0{idx + 1}
+                    </span>
+                    <div className="h-[1px] w-6 bg-white/10 group-hover:bg-black/20 transition-all" />
+                  </div>
+
+                  <h3 className="text-white group-hover:text-black font-black text-[15px] mb-4 uppercase tracking-tight leading-tight transition-colors">
+                    {o.title}
+                  </h3>
+                  
+                  <p className="text-[12px] text-zinc-500 group-hover:text-zinc-700 leading-relaxed font-medium transition-colors line-clamp-5 text-justify">
+                    {o.text}
+                  </p>
+                </div>
+              ))}
+              <div className="min-w-[20px] shrink-0" />
+            </div>
+
+            <div className="max-w-[200px] h-[2px] bg-zinc-900 mx-auto overflow-hidden rounded-full">
+              <div 
+                className="h-full bg-zinc-400 transition-all duration-300 ease-out"
+                style={{ width: `${(1 / dept.so.outcomes.length) * 100}%` }} 
+              />
+            </div>
           </div>
         </div>
       </section>
 
       {/* --- curriculum --- */}
-      <section id="curriculum" className="relative max-w-7xl mx-auto px-6 py-32 overflow-hidden">
+      <section id="curriculum" className="relative max-w-7xl mx-auto px-6 py-20 overflow-hidden">
         <div className="grid lg:grid-cols-12 gap-12 items-start relative z-10">
           <div className="lg:col-span-4">
             <div className="sticky top-32 flex flex-col items-center lg:items-start">
@@ -252,12 +343,9 @@ export default function MFEPage() {
                 <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-[2.5rem] bg-white border border-slate-100 shadow-sm p-10 flex items-center justify-center transition-all duration-500 group-hover:border-black group-hover:shadow-2xl">
                   <img 
                     src={dept.images.watermark} 
-                    className="w-full h-full object-contain opacity-60 group-hover:opacity-100 group-hover:scale-110 group-hover:rotate-3 transition-all duration-1000" 
+                    className="w-full h-full object-contain group-hover:scale-110 group-hover:rotate-45 transition-all duration-1000" 
                     alt={dept.code} 
                   />
-                  <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: dept.theme.accentHex }} />
-                  </div>
                 </div>
               </div>
 
@@ -381,7 +469,7 @@ export default function MFEPage() {
       </div>
 
       {/* --- faculty --- */}
-      <section id="faculty" className="max-w-6xl mx-auto px-6 py-20 bg-white border-y border-slate-100">
+      <section id="faculty" className="max-w-6xl mx-auto px-6 py-15 bg-white border-y border-slate-100">
         <div className="relative flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8 group/header cursor-default">
           <div className="relative">
             <h2 className="text-4xl md:text-5xl font-black text-black tracking-tighter uppercase italic leading-none transition-transform duration-500 group-hover/header:translate-x-2">
@@ -425,7 +513,7 @@ export default function MFEPage() {
       </section>
 
       {/* --- careers --- */}
-      <section id="careers" className="relative max-w-7xl mx-auto px-6 py-32 overflow-hidden">
+      <section id="careers" className="relative max-w-7xl mx-auto px-6 py-20 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full blueprint-grid opacity-40 pointer-events-none" />
         <div 
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[120px] opacity-10 pointer-events-none" 
@@ -489,70 +577,60 @@ export default function MFEPage() {
       </section>
 
       {/* --- contact --- */}
-      <section id="contact" className="max-w-5xl mx-auto px-6 py-24">
-        <div className="group relative bg-[#0a0a0a] rounded-[3rem] p-12 md:p-20 overflow-hidden shadow-2xl transition-all duration-700 hover:shadow-[0_50px_100px_-20px_rgba(0,0,0,0.4)]">
+      <section id="contact" className="max-w-4xl mx-auto px-6 py-16">
+        <div className="group relative bg-[#050505] border border-white/10 rounded-xl p-10 md:p-16 transition-all duration-500 hover:border-white/20 shadow-2xl overflow-hidden">
           
-          <div className="absolute inset-0 opacity-[0.05] pointer-events-none blueprint-grid" />
           <div 
-            className="absolute -top-24 -right-24 w-96 h-96 rounded-full blur-[120px] opacity-20 transition-opacity duration-700 group-hover:opacity-40" 
-            style={{ backgroundColor: dept.theme.accentHex }} 
+            className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-1000 pointer-events-none" 
+            style={{ background: `radial-gradient(circle at center, ${dept.theme.accentHex}, transparent)` }} 
           />
 
-          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
-            <div className="text-center lg:text-left flex-1">
-              <div className="flex items-center justify-center lg:justify-start gap-3 mb-6">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ backgroundColor: dept.theme.accentHex }} />
-                  <span className="relative inline-flex rounded-full h-2 w-2" style={{ backgroundColor: dept.theme.accentHex }} />
-                </span>
-                <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em]">
-                  Direct Coordination
-                </span>
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
+            <div className="flex-1 space-y-8 text-center md:text-left">
+              <div>
+                <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter leading-none">
+                  Connect <br /> 
+                  <span className="text-zinc-800 transition-colors duration-700 group-hover:text-zinc-500">With Us</span>
+                </h2>
+                <div className="h-1 w-12 bg-white mt-6 mx-auto md:mx-0" />
               </div>
-
-              <h2 className="text-3xl md:text-5xl font-black text-white uppercase italic tracking-tighter leading-none mb-6">
-                Ready to <br /> <span className="text-slate-500">Collaborate?</span>
-              </h2>
               
-              <p className="text-slate-400 text-xs md:text-sm font-medium max-w-md leading-relaxed italic mb-0">
-                For academic inquiries, industry partnerships, or facility tours, reach out to the {dept.code} department office directly.
+              <p className="text-zinc-400 text-[15px] leading-relaxed max-w-sm font-medium">
+                Primary contact for academic and industry coordination for the <span className="text-white">{dept.code}</span> department.
               </p>
             </div>
 
-            <div className="flex flex-col items-center lg:items-end gap-6">
-              <button 
-                className="group/btn relative px-12 py-6 bg-white rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl"
-              >
-                <div className="relative z-10 flex items-center gap-3">
-                  <span className="text-black font-black text-[11px] uppercase tracking-[0.2em]">Send Message</span>
+            <div className="flex flex-col gap-10 items-center md:items-end w-full md:w-auto">
+              
+              <button className="group/btn relative px-10 py-5 overflow-hidden transition-all duration-500 active:scale-95 cursor-pointer border border-white/20 hover:border-white">
+                <span className="relative z-10 font-black text-[11px] uppercase tracking-[0.4em] text-white group-hover:text-black transition-colors duration-500 flex items-center gap-4">
+                  Send Message
                   <svg 
-                    width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" 
-                    className="text-black transition-transform duration-300 group-hover/btn:translate-x-1"
+                    viewBox="0 0 24 24" 
+                    className="w-4 h-4 fill-none stroke-current stroke-[3] transition-transform duration-500 group-hover:translate-x-1"
                   >
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
-                </div>
-                <div 
-                  className="absolute inset-0 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300 opacity-10"
-                  style={{ backgroundColor: dept.theme.accentHex }}
-                />
+                </span>
+
+                <div className="absolute inset-0 bg-white -translate-x-full group-hover:translate-x-0 transition-transform duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)]" />
               </button>
 
-              <div className="flex flex-col items-center lg:items-end gap-2">
-                <span className="text-[9px] font-bold text-slate-600 uppercase tracking-widest">Available Mon—Fri</span>
-                <span className="text-[9px] font-bold text-slate-600 uppercase tracking-widest">8:00 AM — 5:00 PM</span>
+              <div className="flex flex-col gap-1 items-center md:items-end opacity-60 group-hover:opacity-100 transition-opacity">
+                <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Operating Hours</span>
+                <span className="text-[13px] font-bold text-white uppercase tracking-wider">08:00 — 17:00 // M—F</span>
               </div>
             </div>
           </div>
 
-          <div className="absolute bottom-0 left-0 w-full flex h-1.5 overflow-hidden">
-            <div className="h-full w-1/3 bg-white/10" />
-            <div className="h-full w-1/3 transition-all duration-1000 group-hover:w-full" style={{ backgroundColor: dept.theme.accentHex }} />
-            <div className="h-full w-1/3 bg-white/10" />
+          <div className="absolute bottom-0 left-0 w-full h-[2px] bg-zinc-900">
+            <div 
+              className="h-full w-0 group-hover:w-full transition-all duration-1000 ease-in-out" 
+              style={{ backgroundColor: dept.theme.accentHex }} 
+            />
           </div>
         </div>
       </section>
-
       <Footer />
     </div>
   );

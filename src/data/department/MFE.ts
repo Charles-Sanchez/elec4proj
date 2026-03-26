@@ -8,11 +8,11 @@ export const MFE = {
   theme: { accentHex: "#ef4444" },
 
   images: {
-    heroLeft: `${base}/hero-left.png`,
-    heroBig: `${base}/hero-big.png`,
-    heroSmall1: `${base}/hero-small-1.png`,
-    heroSmall2: `${base}/hero-small-2.png`,
-    peo: `${base}/peo.png`,
+    heroLeft: `${base}/SME3.jpg`,
+    heroBig: `${base}/SME1.jpg`,
+    heroSmall1: `${base}/SME4.jpg`,
+    heroSmall2: `${base}/SME2.jpg`,
+    peo: `${base}/SME.jpg`,
     watermark: `${base}/MFE-Clear.png`,
   },
 
@@ -24,11 +24,11 @@ export const MFE = {
 
   peo: {
     title: "Program Educational Objectives (PEO)",
-    subtitle: "Edit PEO subtitle here.",
+    subtitle: "3 to 5 years from now the graduates are expected to:",
     bullets: [
-      "Graduates will demonstrate their manufacturing engineering role in their field of work to cope with the needs and demands of the industry.",
-      "Graduates will pursue lifelong learning through engagement and participation in continued professional development that expands their skills to adapt to the changing needs of the manufacturing engineering profession and community.",
-      "Graduates will engage in community efforts for economic progress and/or environmental conservation/restoration."
+      "Establish themselves in manufacturing-related employment, entrepreneurship, or professional practice and demonstrate competence in applying engineering knowledge and modern tools to manufacturing systems and processes.",
+      "Contribute to innovation, productivity, and quality improvement in the manufacturing sector by participating in leadership functions, research, systems improvement, and technology-based initiatives.",
+      "Manifest ethical and socially responsible professional practice, promote sustainability in manufacturing, and pursue lifelong learning through continuing professional development, advanced studies, or active industry and community engagement."
     ],
   },
 
@@ -36,9 +36,18 @@ export const MFE = {
     title: "Student Outcomes (SO)",
     subtitle: "Edit SO subtitle here.",
     outcomes: [
-      { title: "SO 1", text: "Description..." },
-      { title: "SO 2", text: "Description..." },
-      { title: "SO 3", text: "Description..." },
+      { title: "a", text: "Apply knowledge of mathematics and science to solve complex manufacturing engineering problems" },
+      { title: "b", text: "Design and conduct experiments, as well as to analyze and interpret data" },
+      { title: "c", text: "Design a system, component, or process to meet desired needs within realistic constraints, in accordance with standards" },
+      { title: "d", text: "Function in multidisciplinary and multi-cultural teams" },
+      { title: "e", text: "Identify, formulate, and solve complex manufacturing engineering problems" },
+      { title: "f", text: "Discuss professional and ethical responsibility" },
+      { title: "g", text: "Communicate effectively" },
+      { title: "h", text: "Identify the impacts of manufacturing engineering solutions in a global, economic, environmental, and societal context" },
+      { title: "i", text: "Recognize the need for and engage in life-long learning" },
+      { title: "j", text: "Analyze relevant contemporary issues" },
+      { title: "k", text: "Use techniques, skills, and modern engineering tools necessary for manufacturing engineering practice" },
+      { title: "l", text: "Identify and discuss engineering and management principles as a member and leader of a team and manage projects in a multidisciplinary environment" },
     ],
   },
 
