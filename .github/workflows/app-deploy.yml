@@ -2,11 +2,14 @@ name: Docker CI/CD Pipeline
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "mfe-updates" ] # Now runs on your branch too
+  pull_request:
+    branches: [ "main" ] # Runs when you open a PR to check if code is good
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  # We manually set this to lowercase to avoid Docker's naming error
+  IMAGE_NAME: ${{ github.repository_owner }}/elec4docker
 
 jobs:
   test-and-build:
@@ -28,7 +31,7 @@ jobs:
       - name: Install & Test
         run: |
           npm ci
-          npm test --if-present  # PIPELINE CRASHES HERE IF TESTS FAIL
+          npm test --if-present
 
       - name: Log in to GHCR
         uses: docker/login-action@v3
@@ -42,5 +45,7 @@ jobs:
         with:
           context: .
           file: ./ops/app.Dockerfile
-          push: true
+          # We only want to 'push' the image to the registry if we are on the main branch
+          # This prevents experimental branch code from overwriting your 'latest' production image
+          push: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/main' }}
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
