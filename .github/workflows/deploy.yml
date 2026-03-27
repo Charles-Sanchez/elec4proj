@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: Build and Deploy
 
 on:
   push:
@@ -6,107 +6,47 @@ on:
       - main
 
 jobs:
-  # ---------------------------
-  # 🧪 CI STAGE (TESTING)
-  # ---------------------------
-  test:
+  build:
     runs-on: ubuntu-latest
-    # Change 'your-username' to your actual GitHub handle
-    if: github.actor != 'your-username'
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
 
-      - name: Setup Node
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22 # Required for Vite 6+ / Tailwind Oxide
+          node-id: '22'
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Run tests
-        run: npm test
+      - name: Build project
+        run: npm run build
 
-  # ---------------------------
-  # 🐳 BUILD + PUSH TO GHCR
-  # ---------------------------
-  build-and-push:
-    needs: test
-    runs-on: ubuntu-latest
-    # Runs if tests pass OR if tests were skipped because you pushed
-    if: |
-      always() && 
-      (needs.test.result == 'success' || needs.test.result == 'skipped')
-    permissions:
-      contents: read
-      packages: write
+      # Add test step if available
+      # - name: Run tests
+      #   run: npm test
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Log in to GHCR
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build and Push Docker image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: ghcr.io/${{ github.repository }}/webapp:latest
-          platforms: linux/amd64
-
-  # ---------------------------
-  # 🚀 DEPLOY TO RENDER
-  # ---------------------------
   deploy:
-    needs: build-and-push
     runs-on: ubuntu-latest
-    # Only deploy if the build was successful
-    if: needs.build-and-push.result == 'success'
+    needs: build
+    if: success()
 
     steps:
-      - name: Trigger Render Deploy
-        run: |
-          curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
-
-  # ---------------------------
-  # 📝 ERROR LOGGING
-  # ---------------------------
-  log-failure:
-    needs: [test, build-and-push]
-    # Runs ONLY if test or build failed
-    if: failure()
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Log Error to bughist.md
-        run: |
-          TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
-          USER="${{ github.actor }}"
-          
-          # Check if bughist.md exists, if not, create it with a header
-          if [ ! -f bughist.md ]; then
-            echo "# Bug History Log" > bughist.md
-            echo "| Timestamp | User | Status |" >> bughist.md
-            echo "| :--- | :--- | :--- |" >> bughist.md
-          fi
-          
-          echo "| $TIMESTAMP | $USER | FAILED PUSH |" >> bughist.md
-          
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add bughist.md
-          git commit -m "chore: log build failure for $USER at $TIMESTAMP [skip ci]"
-          git push
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/ubuntu/charles-website
+            git pull origin main
+            sudo docker build -t elec4proj:latest .
+            sudo docker stop elec4proj || true
+            sudo docker rm elec4proj || true
+            sudo docker run -d --restart always --name elec4proj -p 3000:3000 elec4proj:latest

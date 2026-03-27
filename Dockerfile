@@ -1,25 +1,32 @@
-# 1. Use Node 22 (LTS) to meet Vite and Tailwind's requirements
-FROM node:22-alpine
+# Stage 1: Build stage
+FROM node:22-alpine AS build
 
-# 2. Set the working directory
 WORKDIR /app
 
-# 3. Copy dependency files
+# Copy package files and install dependencies
 COPY package*.json ./
-
-# 4. Clean install dependencies. 
-# Using 'npm ci' is preferred for Docker as it's faster and 
-# ensures your package-lock.json is strictly followed.
 RUN npm ci
 
-# 5. Copy the rest of your application code
+# Copy source and build
 COPY . .
-
-# 6. Build the application (Vite requires a build step for production)
 RUN npm run build
 
-# 7. Expose the port
+# Stage 2: Serve stage
+FROM nginx:alpine
+
+# Copy nginx config
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Copy build output from build stage
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# Security: Ensure nginx can run as non-root
+RUN touch /tmp/nginx.pid && \
+    chown -R nginx:nginx /tmp/nginx.pid /usr/share/nginx/html /var/cache/nginx /var/log/nginx /etc/nginx
+
+USER nginx
+
+# Expose port 3000
 EXPOSE 3000
 
-# 8. Start the application
-CMD ["npm", "start"]
+CMD ["nginx", "-g", "daemon off;"]
