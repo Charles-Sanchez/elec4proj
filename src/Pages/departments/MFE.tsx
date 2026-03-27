@@ -1,25 +1,11 @@
+import { useEffect, useMemo, useState, useRef } from "react";
+import { Link } from "react-router-dom";
+import MFENavbar from "../../components/MFEnavbar";
+import { mergeDeptWithOverrides } from "../../lib/departmentAdmin";
+import { MFE } from "../../data/department/MFE";
+import "../../styles/departments/MFE.css";
 
-function StatItem({ value, label }: { value: number | string; label: string }) {
-  return (
-    <div className="group cursor-default">
-      <div className="text-5xl font-black tracking-tighter italic mb-3 text-white transition-transform group-hover:scale-110 leading-none tabular-nums">
-        {value.toLocaleString()}
-      </div>
-      <div className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500 group-hover:text-slate-300 transition-colors">
-        {label}
-      </div>
-    </div>
-  );
-}
 
-interface AnimatedStatProps {
-  value: number;
-  label: string;
-  Component: React.ComponentType<{ value: number; label: string }>;
-}
-
-const AnimatedStat = ({ value, label, Component }: AnimatedStatProps) => {
-  const [displayValue, setDisplayValue] = useState(0);
 
   useEffect(() => {
     let start = 0;
