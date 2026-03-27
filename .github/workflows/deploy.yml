@@ -45,6 +45,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /home/ubuntu/charles-website
+            git remote set-url origin git@github.com:Charles-Sanchez/elec4proj.git || true
             git pull origin main
             sudo docker build -t elec4proj:latest .
             sudo docker stop elec4proj || true
