@@ -8,34 +8,39 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GH_TOKEN }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-id: '22'
+          node-version: '22'
           cache: 'npm'
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.TOKEN }}
 
-      - name: Build project
-        run: npm run build
-
-      # Add test step if available
-      # - name: Run tests
-      #   run: npm test
+      - name: Build and Push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ghcr.io/${{ github.repository }}/webapp:latest
+          platforms: linux/amd64
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
     if: success()
-
     steps:
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.3
@@ -44,16 +49,14 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /home/ubuntu/charles-website
-            git remote set-url origin git@github.com:Charles-Sanchez/elec4proj.git || true
-            git pull origin main
-            sudo docker build -t elec4proj:latest .
-            sudo docker stop elec4proj || true
-            sudo docker rm elec4proj || true
-            sudo docker run -d --restart always --name elec4proj -p 3000:3000 elec4proj:latest
+            echo "${{ secrets.TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            docker pull ghcr.io/${{ github.repository }}/webapp:latest
+            docker stop elec4proj || true
+            docker rm elec4proj || true
+            docker run -d --restart always --name elec4proj -p 80:3000 ghcr.io/${{ github.repository }}/webapp:latest
 
-      log-failure:
-    needs: [test, build-and-push, deploy]
+  log-failure:
+    needs: [build, deploy]
     if: failure()
     runs-on: ubuntu-latest
     permissions:
@@ -65,18 +68,6 @@ jobs:
         run: |
           TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
           USER="${{ github.actor }}"
-          
-          # Check if the file exists in the current folder (root)
           if [ ! -f bughist.md ]; then
             echo "# Bug History Log" > bughist.md
-            echo "| Timestamp | User | Status |" >> bughist.md
-            echo "| :--- | :--- | :--- |" >> bughist.md
-          fi
-          
-          echo "| $TIMESTAMP | $USER | FAILED PUSH/DEPLOY |" >> bughist.md
-          
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add bughist.md
-          git commit -m "chore: log failure for $USER at $TIMESTAMP [skip ci]"
-          git push
+            echo
