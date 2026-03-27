@@ -1,13 +1,14 @@
-FROM node:22-bookworm-slim
-WORKDIR /usr/src/app
-
+# Stage 1: Build the React/Vite app
+FROM node:20-alpine AS build
+WORKDIR /app
 COPY package*.json ./
 RUN npm ci
-
 COPY . .
 RUN npm run build
 
-# Vite preview default port
-EXPOSE 4173
-
-CMD ["npm", "run", "preview", "--", "--port", "4173", "--host"]
+# Stage 2: Serve the app with Nginx
+FROM nginx:alpine
+# Copy the built files from the build stage to Nginx
+COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
