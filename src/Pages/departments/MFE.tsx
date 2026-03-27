@@ -5,7 +5,7 @@ import { mergeDeptWithOverrides } from "../../lib/departmentAdmin";
 import { MFE } from "../../data/department/MFE";
 import "../../styles/departments/MFE.css";
 
-function StatItem({ value, label }: { value: number | string; label: string }) {
+
   return (
     <div className="group cursor-default">
       <div className="text-5xl font-black tracking-tighter italic mb-3 text-white transition-transform group-hover:scale-110 leading-none tabular-nums">
