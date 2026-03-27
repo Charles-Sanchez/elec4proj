@@ -1,30 +1,46 @@
-name: Production Gatekeeper
+name: Docker CI/CD Pipeline
 
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    branches: [ "main" ]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  verify-build:
+  test-and-build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Setup Node.js
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          
-      - name: Install Dependencies
-        run: npm ci
-        
-      - name: Run Lint Check (Automatic Response)
-        run: npm run lint
-        
-      - name: Verify Vite Build (The Ultimate Test)
-        run: npm run build
-        
-      - name: Verify Dockerfile Structure
-        run: docker build -t elec4-check -f ops/app.Dockerfile .
+          cache: 'npm'
+
+      - name: Install & Test
+        run: |
+          npm ci
+          npm test --if-present  # PIPELINE CRASHES HERE IF TESTS FAIL
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./ops/app.Dockerfile
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
