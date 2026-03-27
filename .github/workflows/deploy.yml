@@ -51,3 +51,32 @@ jobs:
             sudo docker stop elec4proj || true
             sudo docker rm elec4proj || true
             sudo docker run -d --restart always --name elec4proj -p 3000:3000 elec4proj:latest
+
+      log-failure:
+    needs: [test, build-and-push, deploy]
+    if: failure()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Log Error to bughist.md
+        run: |
+          TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
+          USER="${{ github.actor }}"
+          
+          # Check if the file exists in the current folder (root)
+          if [ ! -f bughist.md ]; then
+            echo "# Bug History Log" > bughist.md
+            echo "| Timestamp | User | Status |" >> bughist.md
+            echo "| :--- | :--- | :--- |" >> bughist.md
+          fi
+          
+          echo "| $TIMESTAMP | $USER | FAILED PUSH/DEPLOY |" >> bughist.md
+          
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add bughist.md
+          git commit -m "chore: log failure for $USER at $TIMESTAMP [skip ci]"
+          git push
