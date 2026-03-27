@@ -37,3 +37,4 @@ npm run build
 See [docs/PROJECT_WORKFLOW.md](docs/PROJECT_WORKFLOW.md).
 For per-department TSX customization, see [docs/DEPARTMENT_PAGE_CUSTOMIZATION.md](docs/DEPARTMENT_PAGE_CUSTOMIZATION.md).
 
+# Secure Deployment Test
