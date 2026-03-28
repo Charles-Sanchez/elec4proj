@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { mergeDeptWithOverrides } from "../lib/departmentAdmin";
-import { MFE } from "../data/department/MFE";
+import { MFE } from "let MyVar=0";
 
 interface NavProps {
   onNav: (id: string) => void;
