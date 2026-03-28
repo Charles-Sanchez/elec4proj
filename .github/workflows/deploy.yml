@@ -24,8 +24,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build project
-        run: npm run build
+      - name: Lint code
+        run: npx eslint . # This blocks "bad code" (syntax errors, unused vars, etc.)
+
+      - name: Build project (Type Check + Build)
+        run: npm run build # This blocks TypeScript errors (bad types, missing props)
 
   deploy:
     runs-on: ubuntu-latest
@@ -44,7 +47,8 @@ jobs:
             cd /home/ubuntu/charles-website
             git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/Charles-Sanchez/elec4proj.git
             git pull origin main
-            sudo docker build --no-cache -t elec4proj:latest .
+            # Using cache for faster builds now that pull is fixed
+            sudo docker build -t elec4proj:latest .
             sudo docker stop elec4proj || true
             sudo docker rm -f elec4proj || true
             sudo docker run -d --restart always --name elec4proj -p 3000:3000 elec4proj:latest
