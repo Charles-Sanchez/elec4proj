@@ -174,7 +174,7 @@ export default function MFEPage() {
                 </div>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-black tracking-tight leading-none mb-4 uppercase italic">
-                test
+                MANUFACTURING
               </h1>
               <h2 className="text-xl md:text-2xl font-light tracking-[0.3em] text-slate-300 uppercase mb-10">
                 Engineering
