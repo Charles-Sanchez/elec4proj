@@ -57,7 +57,6 @@ const AnimatedStat = ({ value, label, Component }: AnimatedStatProps) => {
 };
 
 export default function MFEPage() {
-  const x: number = "I am a string"; // Explicit Type Mismatch
   const [baseDept] = useState<typeof MFE>(MFE);
   const [activeId, setActiveId] = useState<string>("home");
   
