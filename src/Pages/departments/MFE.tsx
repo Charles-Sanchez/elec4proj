@@ -177,7 +177,7 @@ export default function MFEPage() {
                 MFE
               </h1>
               <h2 className="text-xl md:text-2xl font-light tracking-[0.3em] text-slate-300 uppercase mb-10">
-                Engineering
+                ENGR
               </h2>
               <p className="text-sm md:text-base text-slate-500 font-medium max-w-md mb-12 leading-relaxed border-l-0 lg:border-l-2 border-black lg:pl-8 italic mx-auto lg:mx-0">
                 {dept.subtitle}
