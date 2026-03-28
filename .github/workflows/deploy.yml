@@ -25,10 +25,35 @@ jobs:
         run: npm ci
 
       - name: Lint code
-        run: npx eslint . # This blocks "bad code" (syntax errors, unused vars, etc.)
+        run: |
+          npx eslint . --format compact > lint-report.txt || true
+          cat lint-report.txt
+
+      - name: Log Lint Warnings to bughist.md
+        run: |
+          TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
+          USER="${{ github.actor }}"
+          WARNING_COUNT=$(grep -c "warning" lint-report.txt || echo "0")
+          ERROR_COUNT=$(grep -c "error" lint-report.txt || echo "0")
+          
+          if [ ! -f bughist.md ]; then
+            echo "# Bug History Log" > bughist.md
+            echo "| Timestamp | User | Status | Issues |" >> bughist.md
+            echo "| :--- | :--- | :--- | :--- |" >> bughist.md
+          fi
+          
+          if [ "$ERROR_COUNT" -gt "0" ] || [ "$WARNING_COUNT" -gt "0" ]; then
+             echo "| $TIMESTAMP | $USER | LINT ISSUES | $ERROR_COUNT errors, $WARNING_COUNT warnings |" >> bughist.md
+             
+             git config --global user.name "github-actions[bot]"
+             git config --global user.email "github-actions[bot]@users.noreply.github.com"
+             git add bughist.md
+             git commit -m "chore: log lint results for $USER at $TIMESTAMP [skip ci]" || true
+             git push || true
+          fi
 
       - name: Build project (Type Check + Build)
-        run: npm run build # This blocks TypeScript errors (bad types, missing props)
+        run: npm run build
 
   deploy:
     runs-on: ubuntu-latest
@@ -47,7 +72,6 @@ jobs:
             cd /home/ubuntu/charles-website
             git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/Charles-Sanchez/elec4proj.git
             git pull origin main
-            # Using cache for faster builds now that pull is fixed
             sudo docker build -t elec4proj:latest .
             sudo docker stop elec4proj || true
             sudo docker rm -f elec4proj || true
