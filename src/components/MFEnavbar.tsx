@@ -44,7 +44,7 @@ export default function MFEnavbar({ onNav, activeId }: NavProps) {
     { id: "peo", label: "Objectives" },
     { id: "so", label: "Outcomes" },
     { id: "curriculum", label: "Curriculum" },
-    { id: "laboratories", label: "Labs" },
+    { id: "labalaba", label: "Labs" },
     { id: "faculty", label: "Faculty" },
     { id: "contact", label: "Contact" },
   ];
